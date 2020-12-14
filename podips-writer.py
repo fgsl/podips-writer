@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# ===========================================================================
+# coding: utf-8 ===========================================================================
 # podips-writer: A program that reads logs from a queue and send to Fluentd 
 # @author Flávio Gomes da Silva Lisboa <flavio.lisboa@fgsl.eti.br>
 # @license LGPL-2.1
@@ -136,6 +136,10 @@ class LoggerListener(stomp.ConnectionListener):
                 print("ERROR: when try sent to Fluentd:")
                 print(logger.last_error)
                 logger.clear_last_error()
+# puts message on queue again
+                queue = getQueue();
+                queue.send(body=log,destination='/queue/pods')
+                queue.disconnect();
                 try:
                     r = requests.get(podips_host + "/log/500/fail", verify=False)
                     if r.status_code != 200:
