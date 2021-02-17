@@ -11,6 +11,7 @@ import requests
 import socket
 import stomp
 import time
+import warnings
 
 # connection to Fluentd
 def getLogger():
@@ -170,7 +171,7 @@ class LoggerListener(stomp.ConnectionListener):
 # # # Main function
 # # 
 # 
-
+warnings.filterwarnings("ignore")
 print("Waiting 10 seconds to start...")
 time.sleep(10)
 

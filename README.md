@@ -2,9 +2,9 @@
 
 podips-writer is a program to read logs about pods from a queue and send them to a Fluentd server.
 
-# Python version
+# requirements
 
-3
+Python version 3
 
 # Compile
 
