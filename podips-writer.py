@@ -105,7 +105,7 @@ class LoggerListener(stomp.ConnectionListener):
         try:    
             r = requests.get(getPodipsHost() + "/queue/read/500/fail", verify=False)
             if r.status_code != 200:
-                print("ERROR: could not send status of queue reading")
+                print("ERROR: could not send status of queue reading. Host: ", getPodipsHost()," Status code:", r.status_code)
         except Exception as e:
             print("ERROR: could not send status of queue reading:",e)
         if os.path.exists("/tmp/queue_status"):
@@ -115,7 +115,7 @@ class LoggerListener(stomp.ConnectionListener):
         try:
             r = requests.get(podips_host + "/queue/read/200/success", verify=False)
             if r.status_code != 200:
-                print("ERROR: could not send status of queue reading")
+                print("ERROR: could not send status of queue reading. Host: ", getPodipsHost(), " Status code:", r.status_code)
         except Exception as e:
             print("ERROR: could not send status of queue reading:",e)
         if hasattr(frame,'body'):
