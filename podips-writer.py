@@ -116,9 +116,9 @@ class LoggerListener(stomp.ConnectionListener):
         try:
             r = requests.get(podips_host + "/queue/read/200/success", verify=False)
             if r.status_code != 200:
-                print("ERROR: could not send status of queue reading. Host: ", getPodipsHost(), " Status code:", r.status_code)
+                print("ERROR: could not send status of queue reading. Host: ", podips_host, " Status code:", r.status_code)
         except Exception as e:
-            print("EXCEPTION: could not send status of queue reading. Host:", getPodipsHost())
+            print("EXCEPTION: could not send status of queue reading. Host:", podips_host)
             print(e)
         if hasattr(frame,'body'):
             message = frame.body
@@ -146,18 +146,20 @@ class LoggerListener(stomp.ConnectionListener):
                 try:
                     r = requests.get(podips_host + "/log/500/fail", verify=False)
                     if r.status_code != 200:
-                        print("ERROR: could not send status of log writing")
+                        print("ERROR: could not send status of log writing. Host:", podips_host, " Status code:",r.status_code)
                 except Exception as e:
-                    print("ERROR: could not send status of log writing:",e)
+                    print("ERROR: could not send status of log writing. Host:", podips_host)
+                    print(e)
                 if os.path.exists("/tmp/log_status"):
                     os.remove("/tmp/log_status")
             else:
                 try:
                     r = requests.get(podips_host + "/log/200/success", verify=False)
                     if r.status_code != 200:
-                        print("ERROR: could not send status of log writing")
+                        print("ERROR: could not send status of log writing. Host: ", podips_host, " Status code", r.status_code)
                 except Exception as e:
-                    print("PODIPS-WRITER: Log sent to Fluentd:",e)
+                    print("EXCEPTION: could not send status of log writing. Host:", podips_host)
+                    print(e)
                 try:
                     f = open("/tmp/log_status", "w")
                     f.write("working") 
