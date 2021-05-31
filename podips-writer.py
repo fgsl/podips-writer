@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# coding: utf-8 ===========================================================================
+# coding: utf-8 
+# ===========================================================================
 # podips-writer: A program that reads logs from a queue and send to Fluentd 
 # @author Flávio Gomes da Silva Lisboa <flavio.lisboa@fgsl.eti.br>
 # @license LGPL-2.1
