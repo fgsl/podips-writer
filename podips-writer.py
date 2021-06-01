@@ -185,7 +185,7 @@ while True:
         queue = getQueue();
         print("Waiting for messages...")
         time.sleep(60)
-        queue.disconnect();
+        queue.disconnect()
     except Exception as e:
         print("ERROR:",e)
 
