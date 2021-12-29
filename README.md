@@ -9,7 +9,8 @@ Python version 3
 Modules:
 
 * fluent
-* requests 
+* requests
+* stompclient 
 
 Install the dependencies with pip3 so:
 
